@@ -11,6 +11,6 @@ app.use(function(req, res, next) {
 });
 app.use(express.static('public'));
 
-app.listen(PORT, function() {
-    console.log('express server is up and running on ' + PORT);
+app.listen(3000, function() {
+    console.log('express server is up and running on port 3000');
 });
