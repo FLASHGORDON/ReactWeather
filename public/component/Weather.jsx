@@ -43,12 +43,12 @@ var Weather = React.createClass({
 		}
 		return(
 			<div>
-				<h3>Get Weather </h3>
-				<form onSubmit={this.handleChange}>
-					<input type="text" ref="weather"/>
-					<button>Submit</button>
-				</form>
-				{loadingComponent()}
+					<h3>Get Weather </h3>
+					<form onSubmit={this.handleChange}>
+						<input type="text" ref="weather"/>
+						<button>Submit</button>
+					</form>
+					{loadingComponent()}				
 			</div>
 			);
 	}
