@@ -35,18 +35,18 @@ var Weather = React.createClass({
 
 		function loadingComponent(){
 			if(isLoading){
-				return <h3>Fetching Weather...</h3>;
+				return <h3 className="text-center">Fetching Weather...</h3>;
 			}
 			else if(temp && weather){
-				return <p>It's {temp} C in {weather}</p>;
+				return <h3 className="text-center">It's {temp} C in {weather}</h3>;
 			}
 		}
 		return(
 			<div>
-					<h3>Get Weather </h3>
+					<h1 className="text-center">Get Weather </h1>
 					<form onSubmit={this.handleChange}>
 						<input type="text" ref="weather"/>
-						<button>Submit</button>
+						<button className="hollow button expanded">Submit</button>
 					</form>
 					{loadingComponent()}				
 			</div>
