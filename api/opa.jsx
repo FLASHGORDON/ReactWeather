@@ -11,12 +11,14 @@ module.exports = {
 		return axios.get(requrl).then((res)=>{
 			
 			if(res.data.cod && res.data.message){
+			//	console.log(res.data.message);
 				throw new Error(res.data.message);
 			} else{
 				return res.data.main.temp;
 			}
 
 		}, (err)=>{
+			//console.log(err.data.message);
 			throw new Error(err.data.message);
 		});
 	}

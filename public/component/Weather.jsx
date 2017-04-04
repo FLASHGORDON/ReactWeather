@@ -15,17 +15,19 @@ var Weather = React.createClass({
 			isLoading:true,
 			errorMessage:undefined
 		});
-		opa.getTemp(weather).then((temp)=>{
+
+		opa.getTemp(weather).then(
+		(temp)=>{
 			that.setState({
 				weather:weather,
 				temp:temp,
 				isLoading:false 
 			});
 		},(e)=>{
-			//alert(errormessage);
+			//alert(e.message);
 			that.setState({
 				isLoading:false,
-				errorMessage:e.message 
+				errorMessage:e.message
 			});
 		});
 	},
@@ -53,9 +55,9 @@ var Weather = React.createClass({
 		} 
 		return(
 			<div>
-					<h1 className="text-center">Get Weather </h1>
+					<h1 className="text-center page-title">Get Weather </h1>
 					<form onSubmit={this.handleChange}>
-						<input type="text" ref="weather"/>
+						<input type="search" ref="weather" placeholder="Location"/>
 						<button className="hollow button expanded">Submit</button>
 					</form>
 					{loadingComponent()}
