@@ -3,12 +3,12 @@ var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-    context: path.join(__dirname, "public"),
+    context: path.join(__dirname),
     devtool: debug ? "inline-sourcemap" : null,
     entry: [
-        "script!jquery/dist/jquery.min.js",
-        "script!foundation-sites/dist/foundation.min.js",
-        "./script.jsx"
+        "script-loader!./node_modules/jquery/dist/jquery.min.js",
+        "script-loader!./node_modules/foundation-sites/dist/js/foundation.min.js",
+        "./public/script.jsx"
     ],
     externals: {
         jquery: "jQuery"
@@ -34,9 +34,5 @@ module.exports = {
         path: __dirname + "/public/",
         filename: "script.min.js"
     },
-    plugins: debug ? [] : [
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-    ],
+
 };
