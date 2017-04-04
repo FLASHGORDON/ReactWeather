@@ -1,5 +1,6 @@
 var React = require('react');
 var opa = require('../../api/opa.jsx'); 
+var Errmsg = require('./modal.jsx');
 
 var Weather = React.createClass({
 	getInitialState:function() {
@@ -11,7 +12,8 @@ var Weather = React.createClass({
 		var that = this;
 
 		this.setState({
-			isLoading:true 
+			isLoading:true,
+			errorMessage:undefined
 		});
 		opa.getTemp(weather).then((temp)=>{
 			that.setState({
@@ -19,11 +21,12 @@ var Weather = React.createClass({
 				temp:temp,
 				isLoading:false 
 			});
-		},(errormessage)=>{
-			alert(errormessage);
+		},(e)=>{
+			//alert(errormessage);
 			that.setState({
-				isLoading:false 
-			});chennai
+				isLoading:false,
+				errorMessage:e.message 
+			});
 		});
 	},
 	handleChange:function(e){
@@ -31,7 +34,7 @@ var Weather = React.createClass({
 		this.changeWeather(this.refs.weather.value);
 	},
 	render:function(){
-		var {temp,weather,isLoading} = this.state;
+		var {temp,weather,isLoading,errorMessage} = this.state;
 
 		function loadingComponent(){
 			if(isLoading){
@@ -41,6 +44,13 @@ var Weather = React.createClass({
 				return <h3 className="text-center">It's {temp} C in {weather}</h3>;
 			}
 		}
+		function errmessage(){
+			if(typeof errorMessage === 'string'){
+				return(
+					<Errmsg message={errorMessage}/>
+				);
+			}
+		} 
 		return(
 			<div>
 					<h1 className="text-center">Get Weather </h1>
@@ -48,7 +58,8 @@ var Weather = React.createClass({
 						<input type="text" ref="weather"/>
 						<button className="hollow button expanded">Submit</button>
 					</form>
-					{loadingComponent()}				
+					{loadingComponent()}
+					{errmessage()}				
 			</div>
 			);
 	}
