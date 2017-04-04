@@ -8,7 +8,7 @@ var Errmsg = React.createClass({
     render:function(){
         return(
             <div id="error-modal" className="reveal tiny text-center" data-reveal>
-                <h4>Some text</h4>
+                <h4>Some text and</h4>
                 <p>Our message</p>
                 <button className="button hollow" data-close>Okay</button>
             </div>
