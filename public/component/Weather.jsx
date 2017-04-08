@@ -13,7 +13,8 @@ var Weather = React.createClass({
 
 		this.setState({
 			isLoading:true,
-			errorMessage:undefined
+			errorMessage:undefined,
+			weather : undefined,
 		});
 
 		opa.getTemp(weather).then(
@@ -35,6 +36,23 @@ var Weather = React.createClass({
 		e.preventDefault();
 		this.changeWeather(this.refs.weather.value);
 	},
+	
+	componentDidMount :function(){
+		var Loc = this.props.location.query.location;
+		if(Loc && Loc.length >0 ){
+			this.changeWeather(Loc);
+			window.location.hash = '#/';
+		}
+	},
+
+	componentWillReceiveProps:function(newProps){
+		var Loc = newProps.location.query.location;
+		if(Loc && Loc.length >0 ){
+			this.changeWeather(Loc);
+			window.location.hash = '#/';
+		}
+	},
+
 	render:function(){
 		var {temp,weather,isLoading,errorMessage} = this.state;
 

@@ -3,8 +3,13 @@ var {Link,IndexLink} = require('react-router');
 
 var navbar = React.createClass({
 	onSearch :function(e){
-		e.preventDefault();
-		alert("not implemented yet");
+		var loca = this.refs.loc.value;
+		var encodedUR = encodeURIComponent(loca);
+
+		if(loca.length >0){
+			this.refs.loc.value="";
+			window.location.hash="#/?location="+encodedUR;
+		}
 
 	},
 	render:function(){
@@ -19,10 +24,12 @@ var navbar = React.createClass({
 					</ul>
 				</div>
 				<div className="top-bar-right">
+					<form onSubmit={this.onSearch}>
 					<ul class="menu">
-						<li><input type="search" placeholder="Location" ref="location"/></li>
-						<li><button type="button" class="button" onClick={this.onSearch}>Get Weather</button></li>
+						<li><input type="search" placeholder="Location" ref="loc"/></li>
+						<li><button type="submit" class="button" onClick={this.onSearch}>Get Weather</button></li>
 					</ul>
+					</form>
 				</div>
 			</div>
 
