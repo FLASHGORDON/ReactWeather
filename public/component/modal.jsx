@@ -22,7 +22,6 @@ var Errmsg = React.createClass({
             </div>
             
         );
-        
         var $modal = $(ReactDOMServer.renderToString(modalmarkup));
         $(ReactDOM.findDOMNode(this)).html($modal);
 

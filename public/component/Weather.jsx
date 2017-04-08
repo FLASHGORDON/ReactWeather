@@ -30,6 +30,7 @@ var Weather = React.createClass({
 				isLoading:false,
 				errorMessage:e.message
 			});
+			this.refs.weather.value="";
 		});
 	},
 	handleChange:function(e){
